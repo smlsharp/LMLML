@@ -24,6 +24,23 @@ If you get official information, see [LMLML].
  * SML/NJ
  * MLton
 
+
+## SML/NJ
+
+### Test
+
+Performs unit tests by loading `test/sources.cm`.
+
+```
+- CM.make "test/sources.cm";
+[autoloading]
+.
+.
+val it = true : bool
+- TestMain.test();
+```
+
+
 ## Author
 
  * YAMATODANI Kiyoshi @2010, Tohoku University.

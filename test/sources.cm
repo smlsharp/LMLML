@@ -4,6 +4,7 @@
  *)
 Group is
         $/basis.cm
+        $/smlunit-lib.cm
 
         module.cm
         TestMain.sml
