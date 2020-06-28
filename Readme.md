@@ -19,13 +19,16 @@ If you get official information, see [LMLML].
 ## Support platforms
 
  * SML#
+
      Not supported.
      SML# > 0.90 requires interface file (.smi).
 
  * SML/NJ
+
      Tested 110.97
 
  * MLton
+
      Tested 20130715
 
 
@@ -58,6 +61,10 @@ Performs unit tests by loading `test/sources.cm`.
 .
 val it = true : bool
 - TestMain.test();
+............................................F.............................F...F.F..............................
+..................................................F.............................F...F.F........................
+.
+.
 ```
 
 
