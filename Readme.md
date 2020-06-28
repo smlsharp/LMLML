@@ -27,6 +27,22 @@ If you get official information, see [LMLML].
 
 ## SML/NJ
 
+### Install
+
+Compile with `CM`.
+
+```sh
+$ LOCAL_LIB=~/.smlnj/lib
+$ mkdir -p $LOCAL_LIB
+$ echo 'CM.stabilize true "LMLML.cm";' | sml
+$ echo "LMLML.cm $LOCAL_LIB/LMLML.cm" >> ~/.smlnj-pathconfig
+$ mkdir -p $LOCAL_LIB/LMLML.cm
+$ cp -R .cm $LOCAL_LIB/LMLML.cm/.cm
+```
+
+Refer to `$/LMLML.cm` from your `sources.cm`.
+
+
 ### Test
 
 Performs unit tests by loading `test/sources.cm`.

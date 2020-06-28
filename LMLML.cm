@@ -2,6 +2,8 @@
  * @author YAMATODANI Kiyoshi
  * @copyright 2010, Tohoku University.
  *)
-Group
+Library
+        signature MULTI_BYTE_TEXT
+        structure MultiByteText
 is
         main/module.cm
