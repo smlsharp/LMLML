@@ -93,6 +93,11 @@ $ ./test/sources
 ```
 
 
+## License
+
+See LICENSE file for details.
+
+
 ## Author
 
  * YAMATODANI Kiyoshi @2010, Tohoku University.
