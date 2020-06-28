@@ -2,4 +2,9 @@
  * @author YAMATODANI Kiyoshi
  * @copyright 2010, Tohoku University.
  *)
-./main/module.mlb
+local
+        ./main/module.mlb
+in
+        signature MULTI_BYTE_STRING
+        structure MultiByteText
+end
