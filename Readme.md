@@ -16,13 +16,17 @@ If you get official information, see [LMLML].
  * This is not official repository.
 
 
-## Support platforms (should work...)
+## Support platforms
 
  * SML#
-     not supported with SML# (> 0.90) compiler for lack of interface files :(
+     Not supported.
+     SML# > 0.90 requires interface file (.smi).
 
  * SML/NJ
+     Tested 110.97
+
  * MLton
+     Tested 20130715
 
 
 ## SML/NJ
