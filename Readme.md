@@ -59,6 +59,17 @@ val it = true : bool
 
 ## MLton
 
+### Install
+
+Insert mapping entry to `mlb-path-map`.
+
+```sh
+$ echo 'LMLML /path/to/LMLML' >> $MLTON_ROOT/mlb-path-map
+```
+
+Refer to `$(LMLML)/LMLML.mlb` from your `sources.mlb`.
+
+
 ### Test
 
 ```sh
