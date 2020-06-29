@@ -1,5 +1,8 @@
 # LMLML: Library of MultiLingualization for StandardML
 
+LMLML is a library for multi-byte string manipulation.
+'LMLML' is an abbreviation of Library of MultiLingualization for ML.
+
 This is **unofficial** repository for LMLML library.
 
 If you get official information, see [LMLML].
@@ -7,29 +10,29 @@ If you get official information, see [LMLML].
 
 ## What is this
 
- * LMLML is a library of multilingualization for SML.
- * salvaged from the official LMLML distribution (included in SML# 0.90 compiler distribution)
+* LMLML is a library of multilingualization for SML.
+* salvaged from the official LMLML distribution (included in SML# 0.90 compiler distribution)
 
 
 ## What is **not** this
 
- * This is not official repository.
+* This is not official repository.
 
 
 ## Support platforms
 
- * SML#
+* SML#
 
-     Not supported.
-     SML# > 0.90 requires interface file (.smi).
+    Not supported.
+    SML# > 0.90 requires interface file (.smi).
 
- * SML/NJ
+* SML/NJ
 
-     Tested 110.97
+    Tested 110.97
 
- * MLton
+* MLton
 
-     Tested 20130715
+    Tested 20130715
 
 
 ## SML/NJ
@@ -95,12 +98,16 @@ $ ./test/sources
 
 ## License
 
-See LICENSE file for details.
+This software has been developed as a part of the SML# project.
+It is distributed under the BSD-style SMLSharp license, which is
+included in the file LICENSE in this directory.
 
+For the details of SML# project, consult the web page at:
+http://www.pllab.riec.tohoku.ac.jp/smlsharp/
 
 ## Author
 
- * YAMATODANI Kiyoshi @2010, Tohoku University.
+YAMATODANI Kiyoshi @2010, Tohoku University.
 
 
 [LMLML]: http://www.pllab.riec.tohoku.ac.jp/smlsharp/ja/?Library%2FLMLML "LMLML"
