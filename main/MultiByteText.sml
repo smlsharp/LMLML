@@ -27,7 +27,14 @@ struct
      * that ASCIICodec must be loaded and registered to Codecs registry
      * before this MultiByteString is loaded.
      *)
-    structure A = ASCIICodec
+    structure ASCIICodec     = ASCIICodec
+    structure EUCJPCodec     = EUCJPCodec
+    structure GBKCodec       = GBKCodec
+    structure GB2312Codec    = GB2312Codec
+    structure ISO2022JPCodec = ISO2022JPCodec
+    structure ShiftJISCodec  = ShiftJISCodec
+    structure UTF8Codec      = UTF8Codec
+    structure UTF16Codec     = UTF16Codec
   in
   val defaultCodec = ref (getCodec "ASCII")
   val listenersRef = ref ([] : (codec -> unit) list)
