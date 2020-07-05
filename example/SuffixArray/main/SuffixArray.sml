@@ -180,8 +180,8 @@ struct
 
   local
     open Word32
-    val W32 = Word8.toLargeWord
-    val W8 = Word8.fromLargeWord
+    val W32 = Word32.fromLargeWord o Word8.toLargeWord
+    val W8 = Word8.fromLargeWord o Word32.toLargeWord
     infix << >> andb orb
 
     fun writeWord32 outstream word32 =
