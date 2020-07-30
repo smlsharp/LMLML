@@ -75,22 +75,45 @@ val it = true : bool
 
 ### Install
 
-Insert mapping entry to `mlb-path-map`.
+To install [LMLML] for MLton, use `Makefile.mlton`.
 
 ```sh
-$ echo 'LMLML /path/to/LMLML' >> $MLTON_ROOT/mlb-path-map
+$ make -f Makefile.mlton install
+  [MLTON] typecheck LMLML.mlb
+..............................Installation has been completed.
+Please add the entry to your mlb path map file:
+
+  LMLML /usr/local/mlton/lib/LMLML
+
 ```
 
-Refer to `$(LMLML)/LMLML.mlb` from your `sources.mlb`.
+This command install this library to `/usr/local/mlton/lib/LMLML` by default.
+It is able to change the location with `PREFIX` variable like:
+
+```sh
+$ make -f Makefile.mlton PREFIX=~/.sml/mlton install
+```
+
+After `make install`, you need to add an entry in a mlb path mapping file:
+
+```sh
+$ echo 'LMLML /path/to/$PREFIX/lib/LMLML' >> /path/to/mlb-path-map
+```
+
+Refer to `$(LMLML)/LMLML.mlb` from your mlbasis files.
 
 
 ### Test
 
+Perform unit tests for [LMLML], execute `test` target:
+
 ```sh
-$ mlton test/sources.mlb
-$ ./test/sources
-..........................................................................F.F..F...............................
-..................................................E.............................F.F.EF.........................
+$ make -f Makefile.mlton test
+  [MLTON] typecheck LMLML.mlb
+test/sources
+..........................................................................F.F..F......................................
+...........................................E.............................F.F.EF.......................................
+..........................................E.............................F.F.EF........................................
 .
 .
 ```
