@@ -1,0 +1,83 @@
+
+MLTON          := mlton
+MLTON_FLAGS    := -default-ann "nonexhaustiveMatch ignore"
+ifneq ($(MLB_PATH_MAP),)
+MLTON_FLAGS    += -mlb-path-map $(MLB_PATH_MAP)
+endif
+
+PREFIX         := /usr/local/mlton
+
+LMLML_MLB      := LMLML.mlb
+LMLML_TEST_MLB := test/sources.mlb
+LMLML_MLBS     := $(LMLML_MLB)      \
+                  $(LMLML_TEST_MLB)
+
+EXAMPLES       := example/RegExp/example/Grep/sources
+
+EXAMPLE_MLB    := $(EXAMPLES:=.mlb)
+
+LMLML_DIR      := $(shell readlink -f .)
+
+
+all: typecheck_lmlml test example
+
+
+.PHONY: typecheck_lmlml
+typecheck_lmlml: $(LMLML_MLB)
+	@echo "  [MLTON] typecheck $<"
+	@$(MLTON) $(MLTON_FLAGS) -stop tc $<
+
+
+$(EXAMPLE_MLB:.mlb=): MLTON_FLAGS += -mlb-path-var "LMLML $(LMLML_DIR)"
+$(LMLML_TEST_MLB:.mlb=) $(EXAMPLE_MLB:.mlb=): %: %.mlb
+	@echo "  [MLTON] $@"
+	@$(MLTON) $(MLTON_FLAGS) -output $@ $<
+
+
+$(EXAMPLE_MLB:.mlb=.mlb.d): MLTON_FLAGS += -mlb-path-var "LMLML $(LMLML_DIR)"
+%.mlb.d: %.mlb
+	@echo "  [GEN] $@"
+	@$(SHELL) -ec '$(MLTON) $(MLTON_FLAGS) -stop f $< \
+		| sed -e "1i$(<:.mlb=) $@:\\\\" -e "s|.*|  & \\\\|" -e "\$$s| \\\\||" > $@; \
+		[ -s $@ ] || rm -rf $@'
+
+
+.PHONY: test
+test: typecheck_lmlml $(LMLML_TEST_MLB:.mlb=)
+	$(LMLML_TEST_MLB:.mlb=)
+
+
+.PHONY: example
+example: typecheck_lmlml $(EXAMPLES)
+
+
+ifeq ($(findstring clean,$(MAKECMDGOALS)),)
+include $(LMLML_MLBS:.mlb=.mlb.d)
+include $(EXAMPLE_MLB:.mlb=.mlb.d)
+endif
+
+
+.PHONY: install
+install: typecheck_lmlml $(LMLML_MLB)
+	@[ -e $(PREFIX)/lib/LMLML ] || mkdir $(PREFIX)/lib/LMLML
+	@$(MLTON) $(MLTON_FLAGS) -stop f $(LMLML_MLB) | \
+	while read file; do \
+		if expr $$(readlink -f $$file) : ^$$(pwd) >/dev/null; then \
+			cp --parents $$(realpath --relative-to=$$(pwd) $$file) $(PREFIX)/lib/LMLML; \
+			echo -n . ; \
+		fi; \
+	done
+	@echo "Installation has been completed."
+	@echo "Please add the entry to your mlb path map file:"
+	@echo ""
+	@echo "  LMLML $(PREFIX)/lib/LMLML"
+	@echo ""
+
+
+.PHONY: clean
+clean:
+	-$(RM) $(LMLML_MLBS:.mlb=)
+	-$(RM) $(LMLML_MLBS:.mlb=.mlb.d)
+	-$(RM) $(EXAMPLES)
+	-$(RM) $(EXAMPLE_MLB:.mlb=.mlb.d)
+
