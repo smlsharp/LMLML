@@ -97,7 +97,7 @@ $ make -f Makefile.mlton PREFIX=~/.sml/mlton install
 After `make install`, you need to add an entry in a mlb path mapping file:
 
 ```sh
-$ echo 'LMLML /path/to/$PREFIX/lib/LMLML' >> /path/to/mlb-path-map
+$ echo 'LMLML $(PREFIX)/lib/LMLML' >> /path/to/mlb-path-map
 ```
 
 Refer to `$(LMLML)/LMLML.mlb` from your mlbasis files.
@@ -108,8 +108,9 @@ Refer to `$(LMLML)/LMLML.mlb` from your mlbasis files.
 Perform unit tests for [LMLML], execute `test` target:
 
 ```sh
-$ make -f Makefile.mlton test
+$ make -f Makefile.mlton MLB_PATH_MAP=~/.sml/mlton/mlb-path-map
   [MLTON] typecheck LMLML.mlb
+  [MLTON] test/sources
 test/sources
 ..........................................................................F.F..F......................................
 ...........................................E.............................F.F.EF.......................................
@@ -117,6 +118,18 @@ test/sources
 .
 .
 ```
+
+### Example
+
+The `example` target builds `Grep` and `SuffixArray` examples.
+
+- `Grep` (./example/RegExp/example/Grep/sources) is a multilingualized grep.
+    `sources <codec> <regex>` read input string from stdin per line, and checking the contents of the line matches to the regexp pattern.
+    If the line matches to the pattern, print it.
+
+
+- `SuffixArray` (./example/SuffixArray/main/sources) is a multilingualized full text search.
+    `sources <code> <infile> <pattern>` searches fragments match to the pattern.
 
 
 ## License
